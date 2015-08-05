@@ -86,7 +86,7 @@
 	//"defaultView": "view1+view3+view7+view9+view5", 
 	//"defaultView": "view1+view9+view3+view7+view5", 
 	//"defaultView": "view9+view1+view7+view3+view5", 
-	"defaultView": "header+introduction+suite+modelManager", 
+	"defaultView": "header+introduction+suite+modelManager+footer", 
 	
 		
 	"views": {
@@ -94,6 +94,11 @@
 			"constraint" : "top",
 			"controller" : "getApp/js/header.js",
 			"template": "getApp/templates/header.html"
+		},
+		"footer":{
+			"constraint" : "bottom",
+			"controller" : "getApp/js/footer.js",
+			"template" : "getApp/templates/footer.html"
 		},
 		"introduction":{
 			"constraint" : "center",
