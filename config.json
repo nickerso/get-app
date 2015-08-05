@@ -1,0 +1,111 @@
+{
+	"id": "getApplication",
+	"name": "GET: Application",
+	"description": "Demonstrating the capabilities of the GMS-v2",
+	"splash": "splash",
+
+	"loaderConfig": {
+		"paths": {
+			"getApp": "../../get-app"
+		}
+	},
+
+	"dependencies": [
+		"dojox/mobile/_base",
+		"dojox/mobile/compat",
+		"dojox/mobile/TabBar",
+		"dojox/mobile/RoundRectList",
+		"dojox/mobile/ListItem",
+		"dojox/mobile/TabBarButton",
+		"dojox/mobile/Button",
+		"dojox/mobile/RoundRect",
+		"dojox/mobile/Heading",
+		"dojox/mobile/ScrollableView",
+		"dojo/store/Memory",
+		"dojox/mobile/EdgeToEdgeStoreList",
+		"dojo/store/Observable",		
+		"dijit/layout/BorderContainer",
+		"dojox/mobile/View",
+		"dojox/app/widgets/Container"
+	],
+
+	"modules": [],
+
+	"controllers": [
+		"dojox/app/controllers/Load",
+		"dojox/app/controllers/Transition",
+		"dojox/app/controllers/BorderLayout"   
+	//	"dojox/app/controllers/Layout"         // this test can work with either Layout or BorderLayout
+	],
+
+	"borderLayoutNoSplitter": false,  // set true to turn off the splitter on the StackContainer.
+
+	// these are the possible defaultTransitions, 
+	// the defaultTransition is only used if transition is not set in the config and it is not set or defaulted on the transitionEvent
+	//"defaultTransition": "slide",
+	//"defaultTransition": "none",
+	//"defaultTransition": "fade",
+	//"defaultTransition": "flip",     // Note: flip does not work with a BorderLayout Controller
+
+	// these are the possible transitions, 
+	// if a transition is set on a view or parent it will override the transition set on the transitionEvent or the defaultTransition in the config.
+	"transition": "slide",
+	//"transition": "none",
+	//"transition": "fade",
+	//"transition": "flip",     // Note: flip does not work with a BorderLayout Controller
+
+	//stores we are using 
+	"stores": {
+       "listStore":{
+           "type": "dojo/store/Memory",
+	       "observable": true,
+           "params": {
+                "data": "modelApp.listData"
+           }
+       }
+	},
+	
+	// The has section will include the sections for which the has checks are true.  
+	// For the sections with ! it will include the section if the has check is not true.
+	"has" : {
+		"ie9orLess" : {
+			"controllers": [
+				"dojox/app/controllers/HistoryHash"
+			]
+		},
+		"!ie9orLess" : {
+			"controllers": [
+				"dojox/app/controllers/History"
+			]
+		}
+	},	
+
+	// this app uses constraint (region) and multiple files in defaultView instead of an outer template for the layout
+
+	//the name of the view to load when the app is initialized.
+	//"defaultView": "view1+view3+view7+view9+view5", 
+	//"defaultView": "view1+view9+view3+view7+view5", 
+	//"defaultView": "view9+view1+view7+view3+view5", 
+	"defaultView": "header+introduction+suite+modelManager", 
+	
+		
+	"views": {
+		"header":{
+			"constraint" : "top",
+			"controller" : "getApp/js/header.js",
+			"template": "getApp/templates/header.html"
+		},
+		"introduction":{
+			"constraint" : "center",
+			"template": "getApp/templates/introduction.html"
+		},
+		"suite":{
+			"constraint" : "right",
+			"template": "getApp/templates/suite.html"
+		},
+		"modelManager":{
+			"constraint" : "left",
+			"template": "getApp/templates/modelManager.html"
+		}
+	}	
+}
